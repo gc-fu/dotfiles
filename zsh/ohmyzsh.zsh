@@ -64,7 +64,8 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions zsh-vi-mode)
+# syntax highlighting must be the last to be sourced
+plugins=(zsh-autosuggestions zsh-vi-mode zsh-syntax-highlighting)
 
 # User configuration
 
