@@ -13,24 +13,21 @@
     ~/.editorconfig:
       path: editorconfig
       relink: true
-    ~/.config/fish/aliases.fish:
-      relink: true
-      path: aliases.fish
-      create: true
-    ~/.config/fish/config.fish:
-      relink: true
-      path: config.fish
-      create: true
     ~/.gitconfig:
       relink: true
       path: gitconfig
-    ~/.config/fish/functions/:
-      path: fish_functions/*
-      create: true
-      glob: true
+    ~/.zsh:
+    ~/.zshrc:
+      force: true
+    ~/.oh-my-zsh/custom/plugins:
+      path: plugins
+      relink: true
+      force: true
 
 - create:
     - ~/.vim/undodir
 
 - shell:
+  - [chsh -s $(which zsh), Making zsh the default shell]
   - [git submodule update --init --recursive, Installing submodules]
+  - [sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Installing oh my zsh]

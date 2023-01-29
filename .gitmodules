@@ -2,3 +2,10 @@
 	path = dotbot
 	url = https://github.com/anishathalye/dotbot
 	ignore = dirty
+
+[submodule "plugins/zsh-autosuggestions"]
+	path = plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "plugins/zsh-vi-mode"]
+	path = plugins/zsh-vi-mode
+	url = https://github.com/jeffreytse/zsh-vi-mode

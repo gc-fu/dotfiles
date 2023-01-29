@@ -23,9 +23,19 @@ Global settings in gitconfig, should be mapped to **~/.gitconfig**
 
 
 
-## Fish
-**Install fish first** and set it as the default shell<br>
-ref: https://launchpad.net/~fish-shell/+archive/ubuntu/release-3 <br>
-ref: https://stackoverflow.com/questions/453236/how-can-i-set-my-default-shell-on-a-mac-e-g-to-fish <br>
-Aliases in **aliases.fish**<br>
-config in **config.fish**
+## zsh
+Install zsh and oh-my-zsh first manually.
+
+change the default shell to zsh by `chsh` command
+
+
+
+## Install
+
+For the first time install:
+
+Run the following command:
+>./install
+
+Otherwise, run the following command:
+>./install --except shell
