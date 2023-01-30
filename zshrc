@@ -22,3 +22,4 @@ source ~/.oh-my-zsh/oh-my-zsh.sh
 # Settings
 source ~/.zsh/settings.zsh
 
+intel_proxy
