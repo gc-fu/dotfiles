@@ -30,7 +30,7 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 call plug#begin()
 " For use with git
-" Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
 " commenter
 Plug 'preservim/nerdcommenter'
@@ -116,3 +116,20 @@ let g:switch_buffer_hide_numbers = 1
 
 "required by nerdcommenter
 filetype plugin on
+
+"lightline configuration
+let g:lightline = {
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \ }
+      \ }
+
+function! LightlineFilename()
+  let root = fnamemodify(get(b:, 'git_dir'), ':h')
+  let path = expand('%:p')
+  if path[:len(root)-1] ==# root
+    return path[len(root)+1:]
+  endif
+  return expand('%')
+endfunction
+
