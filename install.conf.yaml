@@ -5,32 +5,38 @@
 - clean: ['~']
 
 - link:
-    ~/.config/nvim/init.vim:
+    ~/.vimrc:
       relink: true
       path: init.vim
       create: true
-    ~/.tmux.conf: tmux.conf
+      relink: true
+      force: true
+    # ~/.tmux.conf: tmux.conf
     ~/.editorconfig:
       path: editorconfig
       relink: true
-    ~/.gitconfig:
+      force: true
+    ~/.gitconfig.local:
       relink: true
       path: gitconfig
-    ~/.zsh:
-    ~/.zshrc:
-      force: true
-    ~/.oh-my-zsh/custom/plugins:
-      path: plugins
-      relink: true
-      force: true
+    # ~/.zsh:
+    # ~/.zshrc:
+    #   force: true
+    # ~/.oh-my-zsh/custom/plugins:
+    #   path: plugins
+    #   relink: true
+    #   force: true
 
 - create:
     - ~/.vim/undodir
 
 - shell:
-  - [sudo apt-get update, Update first!]
+  # - [sudo apt-get update, Update first!]
   - [sudo apt-get install silversearcher-ag, ag the monster!]
-  - [sudo chsh -s $(which zsh), Making zsh the default shell]
+  - [curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim, Install vim-plugin]
+  # - [sudo chsh -s $(which zsh), Making zsh the default shell]
   - [sudo cp ./has /usr/local/bin, Install has tool]
+  # - [echo -e "\n\"[include]\"" >> ~/.gitconfig]
+  # - [echo -e "  path = \"~/.gitconfig.local\"" >> ~/.gitconfig]
   - [git submodule update --init --recursive, Installing submodules]
     #- [sudo sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)", Installing oh my zsh]

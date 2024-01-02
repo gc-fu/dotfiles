@@ -1,4 +1,10 @@
 syntax on
+if &term =~ '256color'
+    " Disable Background Color Erase (BCE) so that color schemes
+    " work properly when Vim is used inside tmux and GNU screen
+    set t_ut=
+endif
+set t_Co=256
 set nocompatible
 set ignorecase
 set smartcase
@@ -21,7 +27,7 @@ set nowritebackup
 set incsearch
 set cursorline
 set cursorcolumn
-set colorcolumn=80
+set colorcolumn=100
 set hlsearch
 
 highlight ColorColumn ctermbg=0 guibg=lightgrey
@@ -30,7 +36,7 @@ highlight ColorColumn ctermbg=0 guibg=lightgrey
 
 call plug#begin()
 " For use with git
-Plug 'tpope/vim-fugitive'
+" Plug 'tpope/vim-fugitive'
 
 " commenter
 Plug 'preservim/nerdcommenter'
@@ -40,26 +46,29 @@ Plug 'jiangmiao/auto-pairs'
 
 " Theme for this vim
 Plug 'morhetz/gruvbox'
+" Plug 'lifepillar/vim-gruvbox8'
 
-" Provide plugin support for other plugins
-Plug 'nvim-lua/plenary.nvim'
+" " Provide plugin support for other plugins
+" Plug 'nvim-lua/plenary.nvim'
 
 " Ctrl-p support, tag should be the same with neovim version
-Plug 'BurntSushi/ripgrep'
-Plug 'nvim-telescope/telescope.nvim'
+" Plug 'BurntSushi/ripgrep'
+" Plug 'nvim-telescope/telescope.nvim'
+
+Plug 'ctrlpvim/ctrlp.vim'
 
 Plug 'itchyny/lightline.vim'
 
 " Use S to view the available buffer in normal mode
-Plug 'Yohannfra/Nvim-Switch-Buffer'
+" Plug 'Yohannfra/Nvim-Switch-Buffer'
 
-Plug 'godlygeek/tabular'
+" Plug 'godlygeek/tabular'
 
 " Possible plugin
 Plug 'editorconfig/editorconfig-vim'
 
 " surround with quote
-Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-surround'
 
 call plug#end()
 
@@ -100,18 +109,18 @@ nnoremap <Leader>sa :wa<CR>
 inoremap nn <C-o>o
 
 
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
-
-"Telescope command-line settings
-nnoremap <c-p> <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+" "Telescope command-line settings
+" nnoremap <c-p> <cmd>Telescope find_files<cr>
+" nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 
 
 " switchbuf
-nmap <silent> S :SwitchBuffer<cr>
+" nmap <silent> S :SwitchBuffer<cr>
 
-set switchbuf=usetab
-let g:switch_buffer_hide_numbers = 1
+" set switchbuf=usetab
+" let g:switch_buffer_hide_numbers = 1
 
 
 "required by nerdcommenter
