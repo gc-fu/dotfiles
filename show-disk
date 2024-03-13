@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Display the overall disk usage
+echo "Overall disk usage:"
+df -h
+
+# Set the default directory to the current directory
+directory="."
+
+# Parse the '-d' option
+while getopts "d:" opt; do
+  case $opt in
+    d)
+      directory=$OPTARG
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+  esac
+done
+
+# Display the sizes of directories under the specified directory, sorted from largest to smallest
+echo -e "\nSizes of directories in '$directory' (from largest to smallest):"
+du -h --max-depth=1 "$directory" | sort -hr
+

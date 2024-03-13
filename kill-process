@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# This script kills all processes matching the provided program name.
+# The -d option triggers a dry run, which prints the details of the processes to be killed without actually killing them.
+
+usage() {
+    echo "Usage: $0 [-d] <program_name>"
+    echo "  -d: Perform a dry run. Print the processes that would be killed without killing them."
+}
+
+dry_run=0
+
+# Parse options using getopts
+while getopts ":d" opt; do
+  case ${opt} in
+    d )
+      dry_run=1
+      ;;
+    \? )
+      echo "Invalid Option: -$OPTARG" 1>&2
+      usage
+      exit 1
+      ;;
+  esac
+done
+shift $((OPTIND -1))
+
+# Verify program name argument is provided
+if [ "$#" -ne 1 ]; then
+    usage
+    exit 1
+fi
+
+program_name="$1"
+script_pid=$$
+
+if [ "$dry_run" -eq 1 ]; then
+    echo "Dry run: Listing processes for program name: $program_name"
+    #ps -ef | grep "$program_name" | grep -v grep | awk -v prog="$program_name" -v spid=$script_pid '{if ($2 != spid) print "Program Name: " prog ", PID: " $2 ", CMD: " $8}'
+    ps -ef | grep "$program_name" | grep -v grep | grep -v "$0" | grep -v awk | awk -v prog="$program_name" -v spid=$script_pid '{if ($2 != spid) {printf "Program Name: %s, PID: %s, CMD:", prog, $2; for (i = 8; i <= NF; i++) printf " %s", $i; printf "\n"}}'
+    #ps -ef | grep "$program_name" | grep -v grep
+else
+    echo "Killing all processes matching $program_name..."
+    ps -ef | grep "$program_name" | grep -v grep | grep -v "$0" | grep -v awk | awk -v prog="$program_name" -v spid=$script_pid '{if ($2 != spid) {printf "Program Name: %s, PID: %s, CMD:", prog, $2; for (i = 8; i <= NF; i++) printf " %s", $i; printf "\n"}}'
+    ps -ef | grep "$program_name" | grep -v grep | awk -v spid=$script_pid '{if ($2 != spid) print $2}' | xargs kill -9
+    echo "All processes matching $program_name have been terminated."
+fi
+

@@ -37,6 +37,8 @@
   - [curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim, Install vim-plugin]
   # - [sudo chsh -s $(which zsh), Making zsh the default shell]
   - [sudo cp ./has /usr/local/bin, Install has tool]
+  - [sudo cp ./kill-process /usr/local/bin, Install kill-process tool]
+  - [sudo cp ./show-disk /usr/local/bin, Install show-disk tool]
   # - [echo -e "\n\"[include]\"" >> ~/.gitconfig]
   # - [echo -e "  path = \"~/.gitconfig.local\"" >> ~/.gitconfig]
   - [git submodule update --init --recursive, Installing submodules]
